@@ -363,11 +363,11 @@ def main():
 
     # Predefined topics
     sample_topics = [
-        "Python Machine Learning for Beginners",
-        "JavaScript Async Programming Guide",
-        "Docker Container Best Practices", 
-        "React Hooks Complete Tutorial",
-        "SQL Database Optimization Tips",
+        "Reasons for Heart attack",
+        "Artificial intelligence in healthcare",
+        "Pros and Cons of drinking coffee", 
+        "Best Diet Plans",
+        "Water intake per day",
         "Custom Topic..."
     ]
 
