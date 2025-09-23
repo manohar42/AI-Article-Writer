@@ -75,52 +75,52 @@ def create_slug(title: str) -> str:
     slug = re.sub(r'[-\s]+', '-', slug)
     return slug.strip('-')
 
-# ============ NODE 1: VALIDATE KEYWORDS ============
-def validate_keywords(state: OutlineState) -> OutlineState:
-    """Normalize keywords input and ensure primary exists"""
-    keywords = state.get("keywords_ordered", {})
-    errors = state.get("errors", [])
+# # ============ NODE 1: VALIDATE KEYWORDS ============
+# def validate_keywords(state: OutlineState) -> OutlineState:
+#     """Normalize keywords input and ensure primary exists"""
+#     keywords = state.get("keywords_ordered", {})
+#     errors = state.get("errors", [])
     
-    # Normalize to expected format
-    normalized = {
-        "primary": "",
-        "secondary": [],
-        "lsi": []
-    }
+#     # Normalize to expected format
+#     normalized = {
+#         "primary": "",
+#         "secondary": [],
+#         "lsi": []
+#     }
     
-    if isinstance(keywords, dict):
-        # Handle various key formats
-        primary = (keywords.get("primary") or 
-                  keywords.get("Primary Keywords") or 
-                  keywords.get("Primary") or "").strip()
+#     if isinstance(keywords, dict):
+#         # Handle various key formats
+#         primary = (keywords.get("primary") or 
+#                   keywords.get("Primary Keywords") or 
+#                   keywords.get("Primary") or "").strip()
         
-        secondary = keywords.get("secondary", keywords.get("Secondary", []))
-        if isinstance(secondary, str):
-            secondary = [secondary]
-        elif not isinstance(secondary, list):
-            secondary = []
+#         secondary = keywords.get("secondary", keywords.get("Secondary", []))
+#         if isinstance(secondary, str):
+#             secondary = [secondary]
+#         elif not isinstance(secondary, list):
+#             secondary = []
             
-        lsi = keywords.get("lsi", keywords.get("LSI", []))
-        if isinstance(lsi, str):
-            lsi = [lsi]
-        elif not isinstance(lsi, list):
-            lsi = []
+#         lsi = keywords.get("lsi", keywords.get("LSI", []))
+#         if isinstance(lsi, str):
+#             lsi = [lsi]
+#         elif not isinstance(lsi, list):
+#             lsi = []
             
-        normalized["primary"] = primary
-        normalized["secondary"] = [s.strip() for s in secondary if s.strip()]
-        normalized["lsi"] = [l.strip() for l in lsi if l.strip()]
+#         normalized["primary"] = primary
+#         normalized["secondary"] = [s.strip() for s in secondary if s.strip()]
+#         normalized["lsi"] = [l.strip() for l in lsi if l.strip()]
     
-    # Use topic as fallback primary if empty
-    if not normalized["primary"] and state.get("topic"):
-        normalized["primary"] = state["topic"].strip()
+#     # Use topic as fallback primary if empty
+#     if not normalized["primary"] and state.get("topic"):
+#         normalized["primary"] = state["topic"].strip()
     
-    # Validate primary exists
-    if not normalized["primary"]:
-        errors.append("Primary keyword is required")
+#     # Validate primary exists
+#     if not normalized["primary"]:
+#         errors.append("Primary keyword is required")
     
-    state["keywords_ordered"] = normalized
-    state["errors"] = errors
-    return state
+#     state["keywords_ordered"] = normalized
+#     state["errors"] = errors
+#     return state
 
 # ============ NODE 2: SERP FETCH ============
 def serp_fetch(state: OutlineState) -> OutlineState:
@@ -390,7 +390,7 @@ def build_graph():
     builder = StateGraph(OutlineState)
     
     # Add nodes
-    builder.add_node("validate_keywords", validate_keywords)
+    # builder.add_node("validate_keywords", validate_keywords)
     builder.add_node("serp_fetch", serp_fetch)
     builder.add_node("serp_to_documents", serp_to_documents)
     builder.add_node("embed_and_index", embed_and_index)
@@ -399,8 +399,8 @@ def build_graph():
     builder.add_node("finalize", finalize)
     
     # Add edges
-    builder.add_edge(START, "validate_keywords")
-    builder.add_edge("validate_keywords", "serp_fetch")
+    # builder.add_edge(START, "validate_keywords")
+    builder.add_edge(START, "serp_fetch")
     builder.add_edge("serp_fetch", "serp_to_documents")
     builder.add_edge("serp_to_documents", "embed_and_index")
     builder.add_edge("embed_and_index", "retrieve_context")
