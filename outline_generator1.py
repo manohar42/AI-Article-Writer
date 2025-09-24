@@ -312,12 +312,37 @@ def planner_node(state: OutlineState) -> OutlineState:
     
     # Build parser and prompt
     parser = PydanticOutputParser(pydantic_object=OutlineModel)
-    
+    primary_keywords = state.get("keywords_ordered", {})
+    context = state.get("context", "")
     system_msg = (
-        "Act as a meticulous SEO content planner for technical articles. "
-        "Follow constraints precisely, avoid hallucinations, and ground the outline in the provided SERP summary and retrieved context. "
-        "Create practical, actionable outlines that serve the target keywords. "
-        "Return output strictly in the requested structured format."
+        """
+    You are a world-class SEO content strategist. Create a comprehensive outline for "{primary_keywords}" that:
+    
+    CONTEXT ANALYSIS:
+    - Primary keyword: {primary_keywords}
+    - Search intent: informational
+    - Target audience: General audience
+    - Content goal: Information
+    
+    STRUCTURE REQUIREMENTS:
+    1. Hook-driven introduction that addresses the main pain point
+    2. 5-7 main sections with specific, actionable subtopics
+    3. Each section should have 3-4 H3 subsections (Power of 3 rule)
+    4. Include practical examples, case studies, or data points
+    5. FAQ section addressing "People Also Ask" queries
+    
+    COMPETITOR INSIGHTS:
+    Based on top-ranking content analysis: {context}
+    - Identify content gaps not covered by competitors
+    - Suggest unique angles or perspectives
+    - Recommend optimal word count per section
+    
+    OUTPUT FORMAT:
+    - Narrative-style subheadings (not generic topic labels)
+    - Specific takeaways for each section
+    - Internal linking opportunities
+    - Call-to-action placement suggestions
+    """
     )
     
     human_template = (
@@ -345,6 +370,8 @@ def planner_node(state: OutlineState) -> OutlineState:
             "constraints": json.dumps(constraints, indent=2) if constraints else "None specified",
             "serp_summary": serp_summary,
             "retrieved_context": retrieved_context,
+            "context" : context,
+            "primary_keywords" : primary_keywords
         })
         
         parsed = parser.parse(raw.content)
