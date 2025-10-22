@@ -1,4 +1,4 @@
-# ===== LangChain Full Stack (USE 0.2.x for unified package) =====
+# ===== LangChain Full Stack =====
 langchain==0.2.16
 langchain-openai>=0.1.0
 
@@ -27,8 +27,8 @@ streamlit>=1.28.0
 # ===== Environment =====
 python-dotenv>=1.0.0
 
-# ===== Pydantic v1 (for LangChain 0.2) =====
-pydantic>=1.10.0,<2.0.0
+# ===== Pydantic v2 (REQUIRED for LangChain 0.2.16) =====
+pydantic>=2.7.4
 
 # ===== OpenAI =====
 openai>=1.0.0
