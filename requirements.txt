@@ -15,8 +15,8 @@ sentence-transformers>=2.2.2
 # Web scraping and content processing
 beautifulsoup4>=4.12.0
 newspaper3k>=0.2.8
-lxml>=4.9.0
 lxml_html_clean
+
 
 requests>=2.31.0
 
