@@ -1,36 +1,36 @@
-# Core LangChain packages
-langchain>=0.3.0​
-langchain-core>=0.3.0​
+# ===== LangChain Full Stack =====
+langchain>=0.3.0
+langchain-core>=0.3.0
 langchain-community>=0.3.0
 langchain-openai>=0.2.0
 
-
-# LangGraph for multi-agent orchestration
+# ===== LangGraph =====
 langgraph>=0.2.20
 
-# Vector store and embeddings
+# ===== Vector Store =====
 faiss-cpu>=1.7.4
 sentence-transformers>=2.2.2
 
-# Web scraping and content processing
+# ===== Web Scraping =====
 beautifulsoup4>=4.12.0
-newspaper3k>=0.2.8
+newspaper4k>=0.9.0
 lxml_html_clean
-
-
 requests>=2.31.0
 
-# Keyword extraction
+# ===== Keyword Extraction =====
 keybert>=0.8.0
 
-# Search API
+# ===== Search API =====
 google-search-results>=2.4.2
 
-# Streamlit for web interface
+# ===== Streamlit =====
 streamlit>=1.28.0
 
-# Environment variables
+# ===== Environment =====
 python-dotenv>=1.0.0
 
-# Pydantic v2 (required for LangChain v0.3)
+# ===== Pydantic v2 =====
 pydantic>=2.0.0
+
+# ===== OpenAI =====
+openai>=1.0.0
