@@ -14,11 +14,18 @@ import traceback
 import sys
 import os
 from pathlib import Path
+import traceback
 
-# Ensure the script's directory is in Python's path
+# Fix import path for Streamlit Cloud
 script_dir = Path(__file__).parent.absolute()
-if str(script_dir) not in sys.path:
-    sys.path.insert(0, str(script_dir))
+sys.path.insert(0, str(script_dir))
+
+# Debug: Show what Python sees
+st.sidebar.markdown("### 🔍 Debug Info")
+with st.sidebar.expander("Python Environment"):
+    st.code(f"Working Dir: {os.getcwd()}")
+    st.code(f"Script Dir: {script_dir}")
+    st.code(f"Files Here: {list(Path(script_dir).glob('*.py'))}")
     
 try:
     from ai_article_writer_master import generate_article
