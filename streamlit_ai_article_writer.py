@@ -16,7 +16,7 @@ import traceback
 try:
     from ai_article_writer_master import generate_article
 except ImportError:
-    st.error("❌ Could not import ai_article_writer_master_fixed.py. Make sure it's in the same directory.")
+    st.error("❌ Could not import ai_article_writer_master.py. Make sure it's in the same directory.")
     st.stop()
 
 # Page configuration
