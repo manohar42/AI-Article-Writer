@@ -11,8 +11,8 @@ import time
 from datetime import datetime
 from pathlib import Path
 import traceback
-import sys, os
-sys.path.append(os.path.dirname(__file__))
+# import sys, os
+# sys.path.append(os.path.dirname(__file__))
 try:
     from ai_article_writer_master import generate_article
 except ImportError:
