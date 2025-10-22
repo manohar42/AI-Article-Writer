@@ -15,8 +15,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 # from langchain_community.retrievers import ContextualCompressionRetriever
 # # from langchain.retrievers import ContextualCompressionRetriever
 
-from langchain.retrievers.document_compressors import DocumentCompressorPipeline
-from langchain.retrievers import ContextualCompressionRetriever
+# CORRECT import for LangChain 0.3+
+from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
+
 from langchain.retrievers.document_compressors import EmbeddingsFilter
 from langgraph.graph import StateGraph, START
 import re
