@@ -11,8 +11,15 @@ import time
 from datetime import datetime
 from pathlib import Path
 import traceback
-# import sys, os
-# sys.path.append(os.path.dirname(__file__))
+import sys
+import os
+from pathlib import Path
+
+# Ensure the script's directory is in Python's path
+script_dir = Path(__file__).parent.absolute()
+if str(script_dir) not in sys.path:
+    sys.path.insert(0, str(script_dir))
+    
 try:
     from ai_article_writer_master import generate_article
 except ImportError:
