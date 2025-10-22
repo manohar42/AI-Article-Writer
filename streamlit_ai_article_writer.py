@@ -29,8 +29,12 @@ with st.sidebar.expander("Python Environment"):
     
 try:
     from ai_article_writer_master import generate_article
-except ImportError:
-    st.error("❌ Could not import ai_article_writer_master.py. Make sure it's in the same directory.")
+    st.sidebar.success("✅ Module loaded successfully")
+except ImportError as e:
+    st.error(f"❌ Could not import ai_article_writer_master.py")
+    st.error(f"Error: {str(e)}")
+    with st.expander("🔍 Full Error Trace"):
+        st.code(traceback.format_exc())
     st.stop()
 
 # Page configuration
