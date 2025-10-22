@@ -12,8 +12,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 # from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
-from langchain_community.retrievers import ContextualCompressionRetriever
-
+from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import EmbeddingsFilter
 from langgraph.graph import StateGraph, START
 import re
