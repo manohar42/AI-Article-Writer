@@ -1,8 +1,10 @@
 langgraph
 langgraph-cli
 ipykernel
-langchain
-langchain_core
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-openai>=0.2.0
 dotenv
 openai
 langchain
@@ -19,7 +21,6 @@ langchain-perplexity
 langgraph
 typing-extensions
 langchain-openai 
-langchain-community 
 faiss-cpu 
 tiktoken
 streamlit
